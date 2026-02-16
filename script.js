@@ -28,8 +28,8 @@ function divideCartoes() {
             ">" +
                 "<div class='cartao_conteudo'>" + 
                 elemento + 
-               "</div>" + 
-           "</div>"
+                "</div>" + 
+            "</div>"
         ;
 
         mesa.appendChild(cartao); //adiciona o cartão criado à mesa
@@ -39,27 +39,44 @@ function divideCartoes() {
 
 function descobrir() {
     var descobertas;
-    var totalDescobertas = document.querySelectorAll(".descoberta"); //seleciona todos os elementos com a classe "descoberta" e armazena na variável totalDescobertas
-    
+    var totalDescobertas = document.querySelectorAll(".descoberta:not(.acertaste)"); //seleciona todos os elementos com a classe "descoberta" que não possuem a classe "acertaste" e armazena na variável totalDescobertas, para verificar quantos cartões o jogador já descobriu e evitar que ele descubra mais de dois cartões ao mesmo tempo
     if (totalDescobertas.length > 1 ) { //se o jogador já descobriu dois cartões
         return;
     }
 
     this.classList.add("descoberta"); //ao clicar, adiciona a classe "descoberta" ao cartão clicado
 
-    descobertas = document.querySelectorAll(".descoberta"); //seleciona novamente todos os elementos com a classe "descoberta" e armazena na variável descobertas, para verificar se o jogador descobriu dois cartões
+    descobertas = document.querySelectorAll(".descoberta:not(.acertaste)"); //seleciona novamente todos os elementos com a classe "descoberta" que não possuem a classe "acertaste" e armazena na variável descobertas, para verificar quantos cartões o jogador já descobriu e passar os cartões descobertos para a função comparar
     if (descobertas.length < 2 ) { //se o jogador ainda não descobriu dois cartões
         return;
     }
 
+    comparar(descobertas); //chama a função comparar, passando os cartões descobertos como argumento
 
-    if (descobertas[0].dataset.valor === descobertas[1].dataset.valor) { //se os dois cartões descobertos forem iguais
-        console.log("Par encontrado!"); //exibe uma mensagem no console
+
+}
+
+function comparar(cartoesAComparar) { //função que compara os cartões descobertos
+    if (
+        cartoesAComparar[0].dataset.valor === cartoesAComparar[1].dataset.valor //compara o valor dos dois cartões descobertos usando o atributo data-valor
+    ) {
+        acerto(cartoesAComparar); //se os dois cartões descobertos forem iguais, chama a função acerto
     } else {
-        console.log("Tente novamente!"); //se os dois cartões descobertos forem diferentes, exibe uma mensagem no console
-        }
+        erro(cartoesAComparar); //se os dois cartões descobertos forem diferentes, chama a função erro
+    }
+    
+}
 
+function acerto(osCartoes) {
+    osCartoes.forEach(function(elemento) {
+        elemento.classList.add("acertaste"); //adiciona a classe "acertaste" aos cartões descobertos, para indicar que o jogador acertou
+    });   
+}
 
+function erro(osCartoes) {
+    osCartoes.forEach(function(elemento) {
+        elemento.classList.remove("descoberta"); //remove a classe "descoberta" dos cartões que não foram acertados, para que o jogador possa tentar novamente
+    });  
 }
 
 

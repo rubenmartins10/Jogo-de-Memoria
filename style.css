@@ -69,3 +69,7 @@ main {
 .cartao.descoberta {
   transform: rotateY(-180deg);
 }
+
+.acertaste {
+  opacity: 0;
+}
