@@ -23,7 +23,9 @@ function divideCartoes() {
         var cartao = document.createElement("div"); //cria um elemento div para o cartão
 
         cartao.innerHTML = 
-            "<div class='cartao'>" +
+            "<div class='cartao' data-valor=" +
+            elemento +
+            ">" +
                 "<div class='cartao_conteudo'>" + 
                 elemento + 
                "</div>" + 
@@ -36,8 +38,30 @@ function divideCartoes() {
 
 
 function descobrir() {
+    var descobertas;
+    var totalDescobertas = document.querySelectorAll(".descoberta"); //seleciona todos os elementos com a classe "descoberta" e armazena na variável totalDescobertas
+    
+    if (totalDescobertas.length > 1 ) { //se o jogador já descobriu dois cartões
+        return;
+    }
+
     this.classList.add("descoberta"); //ao clicar, adiciona a classe "descoberta" ao cartão clicado
+
+    descobertas = document.querySelectorAll(".descoberta"); //seleciona novamente todos os elementos com a classe "descoberta" e armazena na variável descobertas, para verificar se o jogador descobriu dois cartões
+    if (descobertas.length < 2 ) { //se o jogador ainda não descobriu dois cartões
+        return;
+    }
+
+
+    if (descobertas[0].dataset.valor === descobertas[1].dataset.valor) { //se os dois cartões descobertos forem iguais
+        console.log("Par encontrado!"); //exibe uma mensagem no console
+    } else {
+        console.log("Tente novamente!"); //se os dois cartões descobertos forem diferentes, exibe uma mensagem no console
+        }
+
+
 }
+
 
 divideCartoes();
 
