@@ -7,7 +7,7 @@ function atualizaNivel() {
     if (nivelTexto < 10) {
         nivelTexto = "0" + nivelTexto;
     }
-    document.querySelector("#nivel").innertext = nivelTexto;
+    document.querySelector("#nivel-atual").innerText = nivelTexto;
 }
 
 function carregaNovoNivel() {

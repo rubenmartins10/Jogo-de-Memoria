@@ -15,7 +15,6 @@ body {
   font-size: 2rem;
   display: flex;
   flex-direction: column;
-  /* Garante que o conteúdo ocupe a altura toda para poder centrar */
   min-height: 100vh; 
   font-family: 'Archivo Narrow', sans-serif;
   background: linear-gradient(to bottom, #fdfdfd, #e0e0e0);
@@ -25,8 +24,9 @@ main {
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  align-items: center; /* Centra verticalmente no meio do ecrã */
+  align-items: center; 
   position: relative;
+  padding-top: 5rem; /* Evita que as cartas fiquem por baixo do cabeçalho */
 }
 
 .mesa {
@@ -34,7 +34,7 @@ main {
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
-  justify-content: center; /* Centra os cartões dentro da mesa */
+  justify-content: center; 
   max-width: 50rem;
   margin: auto;
 }
@@ -72,59 +72,33 @@ main {
   transform: rotateY(-180deg);
 }
 
+/* --- ANIMAÇÕES --- */
 @keyframes erro {
-  10%,
-  90% {
-    transform: rotateY(-180deg) translateX(-1px);
-  }
-  20%,
-  80% {
-    transform: rotateY(-180deg) translateX(2px);
-  }
-  30%,
-  50%,
-  70% {
-    transform: rotateY(-180deg) translateX(-4px);
-  }
-  40%,
-  60% {
-    transform: rotateY(-180deg) translateX(4px);
-  }
+  10%, 90% { transform: rotateY(-180deg) translateX(-1px); }
+  20%, 80% { transform: rotateY(-180deg) translateX(2px); }
+  30%, 50%, 70% { transform: rotateY(-180deg) translateX(-4px); }
+  40%, 60% { transform: rotateY(-180deg) translateX(4px); }
 }
 
 @keyframes acerto {
-  from {
-    transform: rotateY(-180deg) scale3d(1, 1, 1);
-    opacity: 1;
-  }
-  
-  25% {
-    transform: rotateY(-180deg) scale3d(1.1, 1.1, 1.1);
-    opacity: 1;
-  }
-  
-  to {
-    transform: rotateY(-180deg) scale3d(1, 1, 1);
-    opacity: 0;
-  }
+  from { transform: rotateY(-180deg) scale3d(1, 1, 1); opacity: 1; }
+  25% { transform: rotateY(-180deg) scale3d(1.1, 1.1, 1.1); opacity: 1; }
+  to { transform: rotateY(-180deg) scale3d(1, 1, 1); opacity: 0; }
 }
 
 .acertaste {
   pointer-events: none;
-}
-
-.acertaste .cartao_conteudo {
-  animation: acerto 1.3s ease-in-out forwards;
+  animation: acerto 1.3s ease-in-out forwards; /* Animação no cartão inteiro */
 }
 
 .erro {
-  animation: error 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  animation: erro 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; 
 }
 
-
+/* --- CABEÇALHO --- */
 .cabeçalho {
-  display: flex;
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between; /* Afasta os contadores à esquerda e o nível à direita */
     align-items: flex-start;
     width: 100%;
     background-color: #f8f8f8;
@@ -148,7 +122,7 @@ main {
 
 .cabeçalho-titulo {
   font-family: 'Archivo', sans-serif;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   color: #888;
   text-transform: uppercase;
   margin: 0;
@@ -157,61 +131,67 @@ main {
 
 .cabeçalho-num {
   font-size: 2rem;
-  color: #cc3333; /* Cor vermelha semelhante à imagem */
+  color: #cc3333; 
   font-weight: bold;
   display: flex;
   align-items: center;
   line-height: 1;
 }
 
-/* O fundo cinza por trás do número atual de movimentos (02) */
 #mov {
   background-color: #e0e0e0;
   padding: 0 0.2rem;
   border-radius: 3px;
 }
 
-/* --- ECRÃ DE FIM DE JOGO (FEEDBACK) --- */
-.feedback {
+.nivel-container {
+  text-align: right;
+}
+
+#nivel-atual {
+    font-size: 3rem; /* Fica grande e vermelho */
+    color: #cc3333;
+    line-height: 0.8;
+}
+
+
+.subir-nivel, 
+.game-over,
+.end-game {
+  display: none; 
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: var(--gradient); /* Usa o teu gradiente */
-  display: flex;
+  background-color: rgba(0,0,0,0.4); /* Fundo um bocado escuro para centrar a janela na mesa */
+  z-index: 1000;
   justify-content: center;
   align-items: center;
-  z-index: 100; /* Garante que fica por cima de tudo */
-  
-  /* Esconde por defeito */
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
 }
 
-/* Classe que será adicionada pelo JavaScript para mostrar o ecrã */
-.feedback.visivel {
-  opacity: 1;
-  pointer-events: auto;
+.subir-nivel.visivel,
+.game-over.visivel,
+.end-game.visivel {
+  display: flex;
 }
 
 .modal {
-  background-color: #b3b3b3; /* Cor cinza da imagem */
+  background-color: #f0f0f0; 
   padding: 2.5rem 4rem;
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .modal h2 {
   font-family: 'Archivo', sans-serif;
   color: #cc4400;
   margin: 0;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
 }
 
 .reiniciar {
@@ -221,61 +201,15 @@ main {
   font-size: 1.1rem;
   font-weight: bold;
   border: none;
-  border-radius: 30px; /* Botão arredondado */
+  border-radius: 30px; 
   padding: 0.6rem 2rem;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
 }
 
 .reiniciar:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
-
-.nivel-container {
-  text-align: right;
-}
-
-
-.nivel-atual {
-  font-size: 3rem; 
-    color: #cc3333;
-    line-height: 0.8;
-}
-
-.sube-nivel,
-.game-over,
-.end-game {
-  display: none; 
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.1); 
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
-}
-
-.sube-nivel.visivel,
-.game-over.visivel,
-.end-game.visivel {
-  display: flex;
-}
-
-.modal {
-  background :white;
-  padding: 3rem 3rem 1rem;
-  margin:auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 10px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25), 4px 4px 10px rgba(0, 0, 0, 0.25);
-}
-
-

@@ -4,38 +4,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Domestika - Jogo de Cartas</title>
-    
     <link href="https://fonts.googleapis.com/css?family=Archivo|Archivo+Narrow" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="cabeçalho">
         <div class="contadores">
-            <div class="nivel-container">
-                <h4 class="cabeçalho-titulo">Nível</h4>
-                <div class="cabeçalho-num" id="nivel-atual">02</div>
-            </div>
             <div class="contador-item"> 
                 <h4 class ="cabeçalho-titulo"> Movimentos </h4> 
                 <div class="cabeçalho-num">
                     <span id="mov">00</span>/<span id="mov-total">20</span>
                 </div>
             </div> 
-        <div class="contador-item"> 
-            <h4 class ="cabeçalho-titulo">Tempo</h4>
-            <div class="cabeçalho-num">
-                <span id="minutos">00</span>:<span id="segundos">00</span>
+            <div class="contador-item"> 
+                <h4 class ="cabeçalho-titulo">Tempo</h4>
+                <div class="cabeçalho-num">
+                    <span id="minutos">00</span>:<span id="segundos">00</span>
                 </div> 
             </div>
         </div>
+        
+        <div class="nivel-container">
+            <h4 class="cabeçalho-titulo">Nível</h4>
+            <div class="cabeçalho-num" id="nivel-atual">01</div>
+        </div>
     </header>
+
     <main>
         <div id="mesa" class="mesa"></div>
         <div id="subirNivel" class="subir-nivel">
             <div class="modal">
                 <h2>Bom trabalho!</h2>
-                <button id="subir">Nível Seguinte</button>
+                <button id="subir" class="reiniciar" style="margin-bottom: 10px;">Nível Seguinte</button>
                 <button id="reiniciar" class="reiniciar">Jogar novamente</button>
             </div>
         </div>
@@ -59,8 +59,10 @@
     <script src="embaralhar-dividir.js"></script>
     <script src="descobrir-comparar.js"></script>
     <script src="acerto-erro.js"></script>
+    <script src="contador.js"></script>
     <script src="cronometro.js"></script>
     <script src="finalizar.js"></script>
+    <script src="game-over.js"></script>
     <script src="muda-nivel.js"></script>
     <script src="iniciar.js"></script>
 </body>

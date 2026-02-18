@@ -1,3 +1,8 @@
 function finalizar() {
-    document.querySelector("#feedback").classList.add("visivel"); //adiciona a classe "mostrar" ao elemento com id "feedback" para exibir a mensagem de vitória
+    if ( nivelAtual < niveis.length -1 ) {
+    document.querySelector("#subirNivel").classList.add("visivel"); 
+    }
+    else {
+        document.querySelector("#endGame").classList.add("visible");
+    }
 }
