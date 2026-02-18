@@ -14,6 +14,7 @@ function iniciar() {
 
     // Certificar que o texto do nível está certo ao carregar a página
     atualizaNivel();
+    iniciaCronometro();
 }
 
 function reiniciar() {
@@ -24,5 +25,9 @@ function reiniciar() {
 
 iniciar();
 
-document.querySelector("#reiniciar").addEventListener("click", reiniciar);
+document.querySelectorAll(".reiniciar").forEach(function(botao) {
+    if (botao.id !== "subir") {
+        botao.addEventListener("click", reiniciar);
+    }
+});
 document.querySelector("#subir").addEventListener("click", carregaNovoNivel);

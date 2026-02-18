@@ -1,3 +1,4 @@
 function gameOver() {
-    document.querySelector("#gameOver").classList.add("visible");
+    clearInterval(cronometro);
+    document.querySelector("#gameOver").classList.add("visivel");
 }
