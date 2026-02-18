@@ -9,6 +9,8 @@ function descobrir() {
 
     this.classList.add("descoberta"); //ao clicar, adiciona a classe "descoberta" ao cartão clicado
 
+    document.querySelector("#som-cartao").play();
+
     descobertas = document.querySelectorAll(".descoberta:not(.acertaste)"); //seleciona novamente todos os elementos com a classe "descoberta" que não possuem a classe "acertaste" e armazena na variável descobertas, para verificar quantos cartões o jogador já descobriu e passar os cartões descobertos para a função comparar
     if (descobertas.length < 2 ) { //se o jogador ainda não descobriu dois cartões
         return;

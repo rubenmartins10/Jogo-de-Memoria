@@ -13,12 +13,17 @@ function acerto(osCartoes) {
             }
         }, 1200);
     }, 800); 
+
+    document.querySelector("#som-acerto").cloneNode().play();
 }
 
 function erro(osCartoes) {
     osCartoes.forEach(function(elemento) {
         elemento.classList.add("erro"); //adiciona a classe "erro" aos cartões que não foram acertados, para indicar que o jogador errou
     });  
+
+    document.querySelector("#som-erro").play();
+
 
     setTimeout(
         function() {
