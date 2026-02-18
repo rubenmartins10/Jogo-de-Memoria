@@ -1,6 +1,7 @@
 
 function descobrir() {
     var descobertas;
+    var cartoesPendentes;
     var totalDescobertas = document.querySelectorAll(".descoberta:not(.acertaste)"); //seleciona todos os elementos com a classe "descoberta" que não possuem a classe "acertaste" e armazena na variável totalDescobertas, para verificar quantos cartões o jogador já descobriu e evitar que ele descubra mais de dois cartões ao mesmo tempo
     if (totalDescobertas.length > 1 ) { //se o jogador já descobriu dois cartões
         return;
@@ -14,6 +15,11 @@ function descobrir() {
     }
 
     comparar(descobertas); //chama a função comparar, passando os cartões descobertos como argumento
+    atualizarContador(); //chama a função atualizarContador para atualizar o número de movimentos do jogador
+    cartoesPendentes = document.querySelectorAll(".cartao:not(.acertaste)"); //seleciona todos os elementos com a classe "cartao" que não possuem a classe "acertaste" e armazena na variável cartoesPendentes, para verificar quantos cartões ainda estão pendentes e finalizar o jogo quando não houver mais cartões pendentes
+    if (cartoesPendentes.length === 0) {
+        setTimeout(finalizar, 1000); //se não houver mais cartões pendentes, chama a função finalizar após um atraso de 500 milissegundos para exibir a mensagem de vitória
+    }
 }
 
 function comparar(cartoesAComparar) { //função que compara os cartões descobertos

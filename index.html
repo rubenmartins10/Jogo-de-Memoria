@@ -10,13 +10,48 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <main>
-        <div id="mesa" class="mesa">
-            <div class="cartao">
-                <div class="cartao_conteudo">🦄</div>
+    <header class="cabeçalho">
+        <div class="contadores">
+            <div class="nivel-container">
+                <h4 class="cabeçalho-titulo">Nível</h4>
+                <div class="cabeçalho-num" id="nivel-atual">02</div>
             </div>
-
+            <div class="contador-item"> 
+                <h4 class ="cabeçalho-titulo"> Movimentos </h4> 
+                <div class="cabeçalho-num">
+                    <span id="mov">00</span>/<span id="mov-total">20</span>
+                </div>
+            </div> 
+        <div class="contador-item"> 
+            <h4 class ="cabeçalho-titulo">Tempo</h4>
+            <div class="cabeçalho-num">
+                <span id="minutos">00</span>:<span id="segundos">00</span>
+                </div> 
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="mesa" class="mesa"></div>
+        <div id="subirNivel" class="subir-nivel">
+            <div class="modal">
+                <h2>Bom trabalho!</h2>
+                <button id="subir">Nível Seguinte</button>
+                <button id="reiniciar" class="reiniciar">Jogar novamente</button>
+            </div>
+        </div>
+        <div id="gameOver" class="game-over">
+            <div class="modal">
+                <h2>Oh No!</h2>
+                <p>Ficaste sem movimentos.</p>
+                <button class="reiniciar">Tentar novamente</button>
+            </div>
+        </div>
+        <div id="endGame" class="end-game">
+            <div class="modal">
+                <h2>Parabéns!</h2>
+                <p>Concluíste o jogo.</p>
+                <button class="reiniciar">Jogar novamente</button>
+            </div>
         </div>
     </main>
 
@@ -24,6 +59,9 @@
     <script src="embaralhar-dividir.js"></script>
     <script src="descobrir-comparar.js"></script>
     <script src="acerto-erro.js"></script>
+    <script src="cronometro.js"></script>
+    <script src="finalizar.js"></script>
+    <script src="muda-nivel.js"></script>
     <script src="iniciar.js"></script>
 </body>
 </html>
